@@ -7,6 +7,10 @@ interface Key<P, S> {
     val privateKey: S
 }
 
+interface SimpleKey<P> {
+    val key: P
+}
+
 data class RsaPublicKey(val modulus: BigInteger, val exponent: BigInteger)
 
 data class RsaPrivateKey(val inverse: BigInteger)

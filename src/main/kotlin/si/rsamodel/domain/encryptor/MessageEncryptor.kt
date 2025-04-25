@@ -1,8 +1,10 @@
 package si.rsamodel.domain.encryptor
 
-interface MessageEncryptor {
+import java.math.BigInteger
 
-    public fun encrypt(message: String): String
+interface MessageEncryptor<P> {
 
-    public fun decrypt(message: String): String
+    fun encrypt(message: String, key: P): BigInteger
+
+    fun decrypt(message: BigInteger, key: P): String
 }

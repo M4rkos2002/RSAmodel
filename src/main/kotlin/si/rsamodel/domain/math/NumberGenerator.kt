@@ -57,3 +57,27 @@ fun generateEuclideanInverse(a: BigInteger, b: BigInteger): BigInteger {
 
     return oldS
 }
+
+fun stringToBigInteger(s: String): BigInteger {
+    val bytes = s.toByteArray(Charsets.UTF_8)
+    return BigInteger(1, bytes)
+}
+
+fun BigIntegerToString(value: BigInteger): String {
+    val numericStr = value.toString()
+    val sb = StringBuilder()
+
+    var i = 0
+    while (i < numericStr.length) {
+        var length = 2
+        var ascii = numericStr.substring(i, i + length).toInt()
+        if (ascii < 32 || ascii > 126) {
+            length = 3
+            ascii = numericStr.substring(i, i + length).toInt()
+        }
+        sb.append(ascii.toChar())
+        i += length
+    }
+
+    return sb.toString()
+}
