@@ -63,21 +63,8 @@ fun stringToBigInteger(s: String): BigInteger {
     return BigInteger(1, bytes)
 }
 
-fun BigIntegerToString(value: BigInteger): String {
-    val numericStr = value.toString()
-    val sb = StringBuilder()
-
-    var i = 0
-    while (i < numericStr.length) {
-        var length = 2
-        var ascii = numericStr.substring(i, i + length).toInt()
-        if (ascii < 32 || ascii > 126) {
-            length = 3
-            ascii = numericStr.substring(i, i + length).toInt()
-        }
-        sb.append(ascii.toChar())
-        i += length
-    }
-
-    return sb.toString()
+fun BigIntegerToString(number: BigInteger): String {
+    val bytes = number.toByteArray()
+    val cleanBytes = if (bytes.size > 1 && bytes[0] == 0.toByte()) bytes.drop(1).toByteArray() else bytes
+    return String(cleanBytes, Charsets.UTF_8)
 }

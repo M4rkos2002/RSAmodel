@@ -8,6 +8,10 @@ import java.math.BigInteger
 class RSA : MessageEncryptor<RsaKey> {
 
     override fun encrypt(message: String, key: RsaKey): BigInteger {
+        if (message.isEmpty()) {
+            throw IllegalArgumentException("El mensaje no puede estar vacío.")
+        }
+
         val m = key.publicKey.modulus
         val e = key.publicKey.exponent
 
